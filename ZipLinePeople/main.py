@@ -5,7 +5,7 @@ import cvzone
 import math
 from sort import *
 
-cap = cv2.VideoCapture("rtsp://admin:InfosolDev@123@103.162.197.92:602/media/video2")  # For Video
+cap = cv2.VideoCapture("rtsp://admin:admin@789@192.168.1.199:554/unicast/c1/s0/live")  # For Video
 cap.set(cv2.CAP_PROP_BUFFERSIZE, 3)
 
 model = YOLO("../Model/yolov8l.pt")
