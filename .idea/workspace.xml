@@ -4,15 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1f12d078-725c-4c24-9d5f-380bde8c7ef3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="1f12d078-725c-4c24-9d5f-380bde8c7ef3" name="Changes" comment="mon">
+      <change afterPath="$PROJECT_DIR$/motion_detection/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/People_Count_Frame/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/People_Count_Frame/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/People_Count_Frame/input.json" beforeDir="false" afterPath="$PROJECT_DIR$/People_Count_Frame/input.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/People_Count_Frame/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/People_Count_Frame/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/People_Count_Frame/pub-sub_Mqtt.py" beforeDir="false" afterPath="$PROJECT_DIR$/People_Count_Frame/pub-sub_Mqtt.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZipLinePeople/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZipLinePeople/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ZipLinePeople/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZipLinePeople/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ZipLinePeople/pub-sub_Mqtt.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZipLinePeople/pub-sub_Mqtt.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +51,8 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -77,6 +76,19 @@
       <option name="presentableId" value="Default" />
       <updated>1724925121120</updated>
     </task>
+    <task id="LOCAL-00001" summary="mon">
+      <option name="closed" value="true" />
+      <created>1725270922812</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1725270922812</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="mon" />
+    <option name="LAST_COMMIT_MESSAGE" value="mon" />
   </component>
 </project>

@@ -1,4 +1,4 @@
-# main working code with roi
+# # main working code with roi
 # import cv2
 # import threading
 # import numpy as np
@@ -282,8 +282,8 @@ if not cap.isOpened():
     exit()
 
 # Desired frame dimensions (width, height)
-frame_width = 1000
-frame_height = 800
+frame_width = 1400
+frame_height = 700
 
 # Frame storage
 frame = None
@@ -414,7 +414,7 @@ while True:
 # Release the video capture object and close display window
 cap.release()
 cv2.destroyAllWindows()
-#
+
 
 
 
