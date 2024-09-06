@@ -1,9 +1,9 @@
 import paho.mqtt.client as mqtt # type: ignore
 
 # MQTT configuration
-broker = "192.168.1.120"  # Replace with your MQTT broker address
+broker = "broker.hivemq.com"  # Replace with your MQTT broker address
 port = 1883  # Replace with your MQTT broker port
-topic = "yolov8/people_count"
+topic = "zipline/detected"
 
 # Define the MQTT client callbacks
 def on_connect(client, userdata, flags, rc):
@@ -50,3 +50,41 @@ client.connect(broker, port, 60)
 # client.loop_stop()
 client.loop_forever()
 client.disconnect()
+
+# import paho.mqtt.client as mqtt
+# import time
+#
+# # MQTT Settings
+# broker_address = "broker.hivemq.com"  # Replace with your MQTT broker address
+# mqtt_topic = "zipline/detected"
+#
+# # The callback for when the client receives a CONNACK response from the server
+# def on_connect(client, userdata, flags, rc):
+#     print(f"Connected to MQTT Broker with result code {rc}")
+#     client.subscribe(mqtt_topic)
+#
+# # The callback for when a message is received from the server
+# def on_message(client, userdata, msg):
+#     print(f"Message received on {msg.topic}: {msg.payload.decode()}")
+#
+# # MQTT client initialization
+# client = mqtt.Client("Test_Client")
+# client.on_connect = on_connect
+# client.on_message = on_message
+#
+# # Connect to the MQTT broker
+# try:
+#     client.connect(broker_address)
+# except Exception as e:
+#     print(f"Could not connect to MQTT broker: {e}")
+#     exit(1)
+#
+# # Loop and handle disconnects gracefully
+# try:
+#     print("Starting MQTT loop. Press Ctrl+C to exit.")
+#     client.loop_forever()  # This keeps the connection open and listens for messages
+# except KeyboardInterrupt:
+#     print("Keyboard Interrupt detected. Disconnecting from MQTT broker...")
+# finally:
+#     client.disconnect()  # Cleanly disconnect
+#     print("Disconnected from MQTT broker. Exiting...")
