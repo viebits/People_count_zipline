@@ -25,7 +25,7 @@ active_processes = {}
 # MQTT setup
 mqtt_client = mqtt.Client()
 mqtt_client.connect(mqtt_broker, mqtt_port)
-mqtt_client.loop_start()  # Start the MQTT loop
+mqtt_client.loop_forever()  # Start the MQTT loop
 
 # MQTT publish function
 def publish_count(camera_id, people_count):

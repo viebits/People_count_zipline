@@ -1,7 +1,7 @@
 import paho.mqtt.client as mqtt # type: ignore
 
 # MQTT configuration
-broker = "broker.hivemq.com"  # Replace with your MQTT broker address
+broker = "192.168.1.120"  # Replace with your MQTT broker address
 port = 1883  # Replace with your MQTT broker port
 topic = "zipline/detected"
 
