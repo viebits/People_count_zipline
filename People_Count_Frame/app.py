@@ -7,6 +7,8 @@ from ultralytics import YOLO
 from flask import Flask, jsonify, request
 import paho.mqtt.client as mqtt
 from flask_cors import CORS
+import time
+import os
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
@@ -25,20 +27,22 @@ active_processes = {}
 # MQTT setup
 mqtt_client = mqtt.Client()
 mqtt_client.connect(mqtt_broker, mqtt_port)
-mqtt_client.loop_forever()  # Start the MQTT loop
+mqtt_client.loop_start()  # Start the MQTT loop
 
 # MQTT publish function
 def publish_count(camera_id, people_count):
     topic = f"{mqtt_topic}"
     mqtt_client.publish(topic, str(people_count))
 
-def publish_message(motion_type, rtsp_link, site_id, camera_id, alarm, people_count):
+def publish_message(motion_type, rtsp_link, site_id, camera_id, alarm_id, people_count,image):
     message = {
         "rtsp_link": rtsp_link,
         "siteId": site_id,
         "cameraId": camera_id,
+        "alarmId":alarm_id,
         "type": motion_type,
         "people_count": people_count,
+        "image":image
     }
     mqtt_client.publish(mqtt_topic, json.dumps(message))
     print(f"Published message: {json.dumps(message)}")
@@ -56,11 +60,28 @@ def set_roi_based_on_points(points, coordinates):
 
     return scaled_points
 
+
+# Ensure directories exist
+image_dir = "images"
+# video_dir = "videos"
+os.makedirs(image_dir, exist_ok=True)
+# os.makedirs(video_dir, exist_ok=True)
+
+
+def capture_image(frame):
+    timestamp = time.strftime("%Y%m%d_%H%M%S")
+    image_filename = os.path.join(image_dir, f"motion_{timestamp}.jpg")
+    cv2.imwrite(image_filename, frame)
+    absolute_image_path = os.path.abspath(image_filename)
+    print(f"Captured image: {absolute_image_path}")
+    return absolute_image_path
+
+
 # Function to capture and process frames for each camera in its own process
-def capture_and_process_frames(cameraId, rtsp_link, site_id, alarmId, coordinates):
+def capture_and_process_frames(camera_id, rtsp_link, site_id, alarm_id, coordinates):
     cap = cv2.VideoCapture(rtsp_link)
     if not cap.isOpened():
-        print(f"Error: Could not open RTSP stream for camera ID {cameraId}.")
+        print(f"Error: Could not open RTSP stream for camera ID {camera_id}.")
         return
 
     roi_points = set_roi_based_on_points(coordinates["points"], coordinates)
@@ -72,7 +93,7 @@ def capture_and_process_frames(cameraId, rtsp_link, site_id, alarmId, coordinate
     while True:
         ret, frame = cap.read()
         if not ret:
-            print(f"Error: Could not read frame from RTSP stream for camera ID {cameraId}.")
+            print(f"Error: Could not read frame from RTSP stream for camera ID {camera_id}.")
             break
 
         # Resize the frame to the display size
@@ -107,22 +128,25 @@ def capture_and_process_frames(cameraId, rtsp_link, site_id, alarmId, coordinate
             cv2.polylines(resized_frame, [np.array(roi_points)], isClosed=True, color=(0, 255, 0), thickness=2)
 
         # Show the annotated frame in a separate window for each camera
-        cv2.imshow(f'People Count - Camera {cameraId}', resized_frame)
+        cv2.imshow(f'People Count - Camera {camera_id}', resized_frame)
 
-        # Publish the count to MQTT only if it has changed
+        # Publish the count to MQTT and capture the frame only if the count has changed
         if previous_people_count is None or previous_people_count != people_count:
-            publish_message("PEOPLE_COUNT", rtsp_link, site_id, cameraId, alarmId, people_count)
+            frame_copy = frame.copy()
+            image_filename = capture_image(frame_copy)
+            publish_message("PEOPLE_COUNT", rtsp_link, site_id, camera_id, alarm_id, people_count,image_filename)
+            # capture_image(resized_frame, cameraId, people_count)  # Capture and save the frame
             previous_people_count = people_count  # Update the previous count
 
         # Break the loop on 'q' key press or window close
-        if (cv2.waitKey(1) & 0xFF == ord('q')) or (cv2.getWindowProperty(f'People Count - Camera {cameraId}', cv2.WND_PROP_VISIBLE) < 1):
+        if (cv2.waitKey(1) & 0xFF == ord('q')) or (cv2.getWindowProperty(f'People Count - Camera {camera_id}', cv2.WND_PROP_VISIBLE) < 1):
             break
 
     cap.release()
     cv2.destroyAllWindows()
 
 # Flask route to start people counting
-@app.route('/start_counting', methods=['POST'])
+@app.route('/people_start', methods=['POST'])
 def start_counting():
     # Get JSON data from the request
     data = request.json
@@ -133,8 +157,8 @@ def start_counting():
     for camera_data in data:
         print(camera_data, '-----------------camera_data')
         # Extract the values
-        cameraId = camera_data['cameraId']
-        alarmId = camera_data['alarmId']
+        camera_id = camera_data['cameraId']
+        alarm_id = camera_data['alarmId']
         rtsp_link = camera_data['rtsp_link']
         x = camera_data['x']
         y = camera_data['y']
@@ -145,7 +169,7 @@ def start_counting():
 
         # Validate points
         if not isinstance(points, list) or len(points) < 3:
-            return jsonify({"error": f"At least 3 points are required to define an ROI for camera ID {cameraId}"}), 400
+            return jsonify({"error": f"At least 3 points are required to define an ROI for camera ID {camera_id}"}), 400
 
         # Combine the extracted values into a coordinates dictionary
         coordinates = {
@@ -157,17 +181,17 @@ def start_counting():
         }
 
         # Start the frame capture and processing in a separate process for each camera
-        process = multiprocessing.Process(target=capture_and_process_frames, args=(cameraId, rtsp_link, site_id, alarmId, coordinates))
+        process = multiprocessing.Process(target=capture_and_process_frames, args=(camera_id, rtsp_link, site_id, alarm_id, coordinates))
         processes.append(process)
         process.start()
 
         # Store the process in the global dictionary
-        active_processes[cameraId] = process
+        active_processes[camera_id] = process
 
     return jsonify({"message": "People counting started successfully for all cameras"}), 200
 
 # Flask route to stop people counting for specific cameras
-@app.route('/stop_counting', methods=['POST'])
+@app.route('/people_stop', methods=['POST'])
 def stop_counting():
     data = request.json
     camera_ids = data.get('camera_ids', [])
@@ -187,3 +211,7 @@ def stop_counting():
 if __name__ == '__main__':
     multiprocessing.set_start_method('spawn')
     app.run(host='0.0.0.0', port=5000)
+
+
+
+
