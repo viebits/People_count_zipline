@@ -1,9 +1,10 @@
 import paho.mqtt.client as mqtt # type: ignore
 
 # MQTT configuration
-broker = "192.168.1.120"  # Replace with your MQTT broker address
+broker = "broker.hivemq.com"  # Replace with your MQTT broker address
 port = 1883  # Replace with your MQTT broker port
-topic = "yolov8/people_count"
+topic = "zipline/detected"
+
 
 # Define the MQTT client callbacks
 def on_connect(client, userdata, flags, rc):
