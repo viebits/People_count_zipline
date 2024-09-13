@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1f12d078-725c-4c24-9d5f-380bde8c7ef3" name="Changes" comment="final-tue">
+    <list default="true" id="1f12d078-725c-4c24-9d5f-380bde8c7ef3" name="Changes" comment="final-tue&#10;FIRE">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/People_Count_Frame/pub-sub_Mqtt.py" beforeDir="false" afterPath="$PROJECT_DIR$/People_Count_Frame/pub-sub_Mqtt.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FIRE/fire.py" beforeDir="false" afterPath="$PROJECT_DIR$/FIRE/fire.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +112,23 @@
       <option name="project" value="LOCAL" />
       <updated>1725973151456</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="final-tue&#10;FIRE">
+      <option name="closed" value="true" />
+      <created>1726147885180</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1726147885180</updated>
+    </task>
+    <task id="LOCAL-00007" summary="final-tue&#10;FIRE">
+      <option name="closed" value="true" />
+      <created>1726148110577</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1726148110577</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -131,6 +147,7 @@
     <MESSAGE value="fri" />
     <MESSAGE value="mon" />
     <MESSAGE value="final-tue" />
-    <option name="LAST_COMMIT_MESSAGE" value="final-tue" />
+    <MESSAGE value="final-tue&#10;FIRE" />
+    <option name="LAST_COMMIT_MESSAGE" value="final-tue&#10;FIRE" />
   </component>
 </project>
