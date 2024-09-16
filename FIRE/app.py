@@ -138,7 +138,7 @@ def fire_detection_start(task):
     Start the fire detection process.
     """
     try:
-        camera_id=task["cameera_id"]
+        camera_id=task["camera_id"]
         if camera_id not in tasks_processes:
             stop_event = multiprocessing.Event()
             tasks_processes[camera_id]=stop_event
