@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1f12d078-725c-4c24-9d5f-380bde8c7ef3" name="Changes" comment="final-tue&#10;FIRE-complete&#10;fire-app.py">
-      <change afterPath="$PROJECT_DIR$/ZipLinePeople/app2.py" afterDir="false" />
+    <list default="true" id="1f12d078-725c-4c24-9d5f-380bde8c7ef3" name="Changes" comment="final-tue&#10;FIRE-complete&#10;fire-app.py&#10;zipline-app2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FIRE/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/FIRE/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ZipLinePeople/app2.py" beforeDir="false" afterPath="$PROJECT_DIR$/ZipLinePeople/app2.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,7 +145,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726474609097</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="final-tue&#10;FIRE-complete&#10;fire-app.py&#10;zipline-app2">
+      <option name="closed" value="true" />
+      <created>1726488497401</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1726488497401</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -168,6 +175,7 @@
     <MESSAGE value="final-tue&#10;FIRE" />
     <MESSAGE value="final-tue&#10;FIRE-complete" />
     <MESSAGE value="final-tue&#10;FIRE-complete&#10;fire-app.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="final-tue&#10;FIRE-complete&#10;fire-app.py" />
+    <MESSAGE value="final-tue&#10;FIRE-complete&#10;fire-app.py&#10;zipline-app2" />
+    <option name="LAST_COMMIT_MESSAGE" value="final-tue&#10;FIRE-complete&#10;fire-app.py&#10;zipline-app2" />
   </component>
 </project>

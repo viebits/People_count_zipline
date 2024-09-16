@@ -1,7 +1,3 @@
-
-
-
-
 import json
 import multiprocessing
 import cv2
